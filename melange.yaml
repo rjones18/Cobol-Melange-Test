@@ -1,0 +1,33 @@
+package:
+  name: "gnu-cobol"
+  version: "3.1.2"
+  description: "A free, modern COBOL compiler"
+
+pipeline:
+  - uses: fetch
+    with:
+      uri: "https://ftp.gnu.org/gnu/gnucobol/gnucobol-3.1.2.tar.xz"
+      sha256: "597005d71fd7d65b90cbe42bbfecd5a9ec0445388639404662e70d53ddf22574"
+  - uses: autoconf
+  - uses: make
+    with:
+      jobs: 4
+  - uses: install
+    with:
+      destdir: "${{targets.destdir}}"
+
+environment:
+  contents:
+    packages:
+      - build-base
+      - gcc
+      - g++
+      - make
+
+# Define the subpackage without 'depends'
+subpackages:
+  - name: "gnu-cobol-dev"
+    description: "Development files for GNU Cobol"
+    pipeline:
+      - uses: split
+

@@ -1,0 +1,25 @@
+# melange.yaml
+package:
+  name: python-flask-app
+  version: 1.0.0
+  description: A minimal Flask app
+  license: MIT
+
+environment:
+  contents:
+    repositories:
+      - https://dl-cdn.alpinelinux.org/alpine/latest-stable/main
+    packages:
+      - python3
+      - py3-pip
+
+pipeline:
+  - uses: fetch
+    with:
+      uri: "flask-app-source.tar.gz"  # You can host the source tarball or provide it from a local source
+
+  - uses: apkbuild
+    with:
+      install: |
+        pip3 install -r requirements.txt
+

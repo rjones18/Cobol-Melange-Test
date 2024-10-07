@@ -1,0 +1,15 @@
+# apko.yaml
+contents:
+  repositories:
+    - https://dl-cdn.alpinelinux.org/alpine/latest-stable/main
+  packages:
+    - python3
+    - py3-pip
+
+entrypoint:
+  command: ["/usr/bin/python3", "/path/to/your/app.py"]
+
+labels:
+  org.opencontainers.image.title: "Flask Container"
+  org.opencontainers.image.description: "A Python Flask container using apko"
+  org.opencontainers.image.licenses: "MIT"
